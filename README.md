@@ -13,6 +13,8 @@ To clean, use the phony function ``` make clean ```.
 
 ## Anti-debugging
 
+The goal of this test is to detect processes corresponding to reverse engineering tools such as ghidra, PETools, wireshark, radare etc... To do so, the list of the name of all running processes ```ps -eo comm ``` is compared to a list of known process name corresponding to such tools. If there is at least one of such a process running, the test fails, otherwise it passes.
+
 ### Ptrace
 
 The premis of this technique is that ptrace can only be called once on a process. If it return -1, then the process is already traced. gdb is an example of a debugger tracing the process. For instance, if gdb is called on *main*, this test is supposed to fail.
